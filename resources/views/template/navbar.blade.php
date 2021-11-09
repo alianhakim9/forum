@@ -35,7 +35,7 @@
 
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                    this.closest('form').submit();"
+                                                                                                                                                                                        this.closest('form').submit();"
                                         class="nav-link">
                                         {{ __('Log Out') }}
                                     </a>
@@ -60,3 +60,13 @@
 </body>
 
 </html>
+
+{{-- catatan 
+    composer install
+composer update
+npm install && npm run dev
+setup .env
+setup database 
+ - nama db : forum-laravel
+php artisan migrate
+php artisan serve --}}
