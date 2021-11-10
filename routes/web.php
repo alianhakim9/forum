@@ -32,4 +32,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // Question Route
-Route::get('/tambah', [QuestionController::class, 'add_view']);
+Route::get(
+    '/tambah',
+    [QuestionController::class, 'add_view']
+);
+
+// Image Route
+Route::get(
+    'tambah/insert',
+    [QuestionController::class, 'create']
+)->name('add');
+Route::post(
+    'tambah/save',
+    [QuestionController::class, 'store']
+)->name('image_save');
+Route::get(
+    'tambah/view{fileImage}',
+    [QuestionController::class, 'viewImage']
+)->name('image_view');
