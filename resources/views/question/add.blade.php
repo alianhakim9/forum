@@ -34,11 +34,11 @@
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="image_title">
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="form-group mb-3">
                         <label>Deskripsi</label>
-                        <textarea name="image_desc" id="ckview"></textarea>
+                        <textarea name="description" id="ckview"></textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label>Upload</label>

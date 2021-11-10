@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Images extends Model
 {
-    protected $table = 'image';
-    protected $fillable = ['image_title', 'image_desc', 'image_src'];
+    protected $table = 'questions';
+    protected $fillable = ['title', 'description', 'image_src'];
 }

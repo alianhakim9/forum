@@ -18,17 +18,20 @@ class QuestionController extends Controller
         $file = $request->file('image_src');
         $ext = $file->getClientOriginalExtension();
 
+        $user_id = auth()->user()->id;
+
         $dateTime = date('Ymd_his');
         $newName = 'image_' . $dateTime . '.' . $ext;
 
         $file->move(storage_path(env('PATH_IMAGE')), $newName);
 
-        $images = new images();
-        $images->image_title = $request->image_title;
-        $images->image_desc = $request->image_desc;
-        $images->image_src = $newName;
+        $question = new Question();
+        $question->user_id = $user_id;
+        $question->title = $request->title;
+        $question->description = $request->description;
+        $question->image_src = $newName;
 
-        $images->save();
+        $question->save();
 
         return redirect('tambah')->with('success', 'Image have been saved');
     }
