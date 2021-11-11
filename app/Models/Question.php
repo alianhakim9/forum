@@ -10,4 +10,14 @@ class Question extends Model
     use HasFactory;
     protected $table = 'questions';
     protected $fillable = ['title', 'description', 'image_src'];
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    function answer()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

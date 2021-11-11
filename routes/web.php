@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,38 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Halaman Home
+Route::get('/', [QuestionController::class, 'index']);
 
 // User Route
 Route::get('/profil', [UserController::class, 'user_profile']);
 
+// Question Route
+Route::get('/tambah', [QuestionController::class, 'add_view']);
+Route::get('/detail/{question_id}', [QuestionController::class, 'detail']);
+Route::get('/profil', [QuestionController::class, 'view_by_user_id']);
+Route::get('image/view/{fileImage}', [QuestionController::class, 'view_image'])->name('image_view');
+Route::post('tambah/save', [QuestionController::class, 'store'])->name('save_question');
+
+// Answer Route
+Route::post('answer/add/{question_id}', [AnswerController::class, 'add'])->name('save_answer');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-// Question Route
-Route::get(
-    '/tambah',
-    [QuestionController::class, 'add_view']
-);
-
-// Image Route
-Route::get(
-    'tambah/insert',
-    [QuestionController::class, 'create']
-)->name('add');
-Route::post(
-    'tambah/save',
-    [QuestionController::class, 'store']
-)->name('image_save');
-Route::get(
-    'tambah/view{fileImage}',
-    [QuestionController::class, 'viewImage']
-)->name('image_view');
