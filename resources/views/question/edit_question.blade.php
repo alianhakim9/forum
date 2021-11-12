@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Question</title>
+    <title>Edit Pertanyaan</title>
     <link rel="stylesheet" href="../css/bootstrap5/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="../js/bootstrap5/bootstrap.js"></script>
 </head>
 
@@ -56,47 +57,42 @@
         </div>
     </nav>
 
-    <div class="container mb-3">
-        <img src=" {{ url('image/view/' . $question->image_src) }}" width="500" class="img rounded-2">
-        <br>
-        <img src="../img/icons/person.svg" class="me-1 mt-2 mb-2"> {{ $question->user->name }}
+    <div class="container">
+        <h1>Edit Pertanyaan</h1>
+        <div class="badge bg-info">Harap sertakan foto agar memudahkan orang lain memberi gambaran diskusi</div>
+        <br /><br />
+        <div class="container">
+            <div class="row">
 
-        <h3>{{ $question->title }}</h3>
-        <p class="lead">{{ $question->description }}</p>
-        <hr>
-
-        @if (count($answers) > 0)
-        <h5>komentar</h5>
-        @foreach ($answers as $item)
-        <div class="card p-2 mb-2">
-            <p class="fw-bold">{{ $item->user->name }}</p>
-            <p>{{ $item->answer }}</p>
-        </div>
-        @endforeach
-        @endif
-        @if (Route::has('login'))
-        @auth
-        {{-- lamun udah login ieu nu tampil --}}
-        <h5>Tambah Komentar</h5>
-        <div class="row">
-            <div class="col-md-6">
-                <form enctype="multipart/form-data" method="POST" action="{{ url('answer/add/' . $question->id) }}">
-                    @csrf
-                    <div class="form-group">
-                        <textarea name="answer" id="ckview"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary mt-3">Kirim Komentar</button>
-                    </div>
-                </form>
+                <div class="col-md-12">
+                    @foreach($questions as $item)
+                    <form action="/question/update" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ $item->title }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Deskripsi</label>
+                            <textarea name="description" id="ckview" value="{{ $item->description }}"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Upload</label>
+                            <input type="file" name="image_src" class="form-control" value="{{ $item->image_src }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary">Edit Pertanyaan</button>
+                        </div>
+                    </form>
+                    @endforeach
+                </div>
             </div>
         </div>
-        @else
-        {{-- lamun can login, ieu nu tampil --}}
-        <div class="badge bg-warning text-dark">Silahkan login untuk menambahkan komentar</div>
-        @endauth
-        @endif
     </div>
+
     <script src="{{ url('plugins/tinymce/jquery.tinymce.min.js') }}"></script>
     <script src="{{ url('plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
@@ -105,6 +101,8 @@
             forced_root_block: ""
         });
     </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <body>
 
 </html>

@@ -35,3 +35,7 @@ Route::post('answer/add/{question_id}', [AnswerController::class, 'add'])->name(
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/question/edit_question/{id}', [QuestionController::class, 'edit_question']);
+Route::post('/question/update', [QuestionController::class, 'update']);
+Route::get('/question/delete/{id}', [QuestionController::class, 'delete']);

@@ -6,8 +6,9 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Images;
 use App\Models\User;
+use App\Http\Controllers\Image;
 use Illuminate\Http\Request;
-use Image;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -79,6 +80,27 @@ class QuestionController extends Controller
     }
 
     // Edit Question berdasarkan id question
+    public function edit_question($id)
+    {
+        $question = DB::table('questions')->where('id', $id)->get();
+
+        return view('question/edit_question', ['questions' => $question]);
+    }
+    public function update(Request $request)
+    {
+        DB::table('questions')->where('id', $request->id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image_src' => $request->image_src
+        ]);
+
+        return redirect('/profil');
+    }
 
     // Hapus Question Berdasarkan id question
+    public function delete($id)
+    {
+        DB::table('questions')->where('id', $id)->delete();
+        return redirect('/profil');
+    }
 }
