@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forum Diskusi</title>
-    <link rel="stylesheet" href="./css/bootstrap5/bootstrap.css">
-    <script src="./js/bootstrap5/bootstrap.js"></script>
+    <title>Laporkan Bug Forum Diskusi</title>
+    <link rel="stylesheet" href="../css/bootstrap5/bootstrap.css">
+    <script src="../js/bootstrap5/bootstrap.js"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                                 <a href="/profil" class="nav-link">Profil</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/tambah" class="nav-link">Tambah Pertanyaan</a>
+                                <a href="/add" class="nav-link">Tambah Pertanyaan</a>
                             </li>
                             <li class="nav-item">
                                 <form method="POST" action="{{ route('logout') }}">
@@ -35,7 +35,7 @@
 
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                this.closest('form').submit();"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            this.closest('form').submit();"
                                         class="nav-link">
                                         {{ __('Log Out') }}
                                     </a>
@@ -52,39 +52,42 @@
                         @endauth
                     @endif
                     <li class="nav-item">
-                        <a href="report" class="btn btn-danger nav-link text-light">Laporkan Bug</a>
+                        <a href="#" class="btn btn-danger nav-link text-light">Laporkan Bug</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    @yield('content')
-    <div class="card text-dark bg-light rounded-0 mt-5">
-        <div class="card-header bg-dark rounded-0">
-            <div class="container">
-                <p class="fw-bold text-light">Saling diskusi di forum diskusi</p>
+    <div class="container mt-5 mb-5">
+        <h1>Laporkan Bug</h1>
+        <i>Pesan akan diterima oleh developer Forum Diskusi Melalui Email</i>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="report/kirim" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group mt-3">
+                        <label>Subjek</label>
+                        <input type="text" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Pesan</label>
+                        <textarea name="message" id="ckview" class="form-control" required></textarea>
+                    </div>
+                    <button class="btn btn-primary mt-2" type="submit" value="kirim">Kirim</button>
+                </form>
             </div>
         </div>
-        <div class="card-body">
-            <div class="container">
-                <h5 class="card-title">Light card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-        </div>
-    </div>
     </div>
 </body>
 
 </html>
 
-{{-- catatan 
-    composer install
-composer update
-npm install && npm run dev
-setup .env
-setup database 
- - nama db : forum-laravel
-php artisan migrate
-php artisan serve --}}
+<script src="{{ url('plugins/tinymce/jquery.tinymce.min.js') }}"></script>
+<script src="{{ url('plugins/tinymce/tinymce.min.js') }}"></script>
+<script>
+    tinymce.init({
+        selector: '#ckview',
+        forced_root_block: ""
+    });
+</script>

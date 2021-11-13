@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\BugReportController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/question/edit_question/{id}', [QuestionController::class, 'edit_question']);
 Route::post('/question/update', [QuestionController::class, 'update']);
 Route::get('/question/delete/{id}', [QuestionController::class, 'delete']);
+
+
+// Email Route
+Route::get('report', function () {
+    return view('bug/report');
+});
+Route::post('report/kirim', [BugReportController::class, 'send']);
