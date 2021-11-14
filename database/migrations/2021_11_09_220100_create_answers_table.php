@@ -20,9 +20,9 @@ class CreateAnswersTable extends Migration
             $table->index('user_id');
             $table->index('question_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');;
             $table->text('answer');
-            $table->string('image_src');
+            $table->string('image_src')->default(null);
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h1>Tambah Pertanyaan</h1>
-        <div class="badge bg-info">Harap sertakan foto agar memudahkan orang lain memberi gambaran diskusi</div>
+        <div class="badge bg-info">Harap sertakan foto agar memudahkan orang lain memberi solusi</div>
         <br /><br />
         <div class="container">
             <div class="row">

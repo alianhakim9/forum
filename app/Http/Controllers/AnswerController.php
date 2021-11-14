@@ -19,4 +19,20 @@ class AnswerController extends Controller
 
         return redirect('detail/' . $question_id);
     }
+
+    public function my_answer()
+    {
+        if (auth()->user() == NULL) {
+            return view('answer/detail', [
+                'status' => false,
+                'message' => 'Harap login terlebih dahulu'
+            ]);
+        } else {
+            $myAnswer = Answer::where('user_id', auth()->user()->id)->get();
+            return view('answer/detail', [
+                'status' => true,
+                'myAnswers' => $myAnswer
+            ]);
+        }
+    }
 }

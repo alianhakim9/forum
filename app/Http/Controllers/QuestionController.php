@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
-use App\Models\Images;
 use App\Models\User;
-use App\Http\Controllers\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 class QuestionController extends Controller
 {
@@ -88,12 +87,22 @@ class QuestionController extends Controller
     }
     public function update(Request $request)
     {
-        DB::table('questions')->where('id', $request->id)->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'image_src' => $request->image_src
-        ]);
-
+        $currentImage = DB::table('questions')->where('id', $request->id)->get('image_src');
+        var_dump($currentImage);
+        die;
+        if ($request->image_src == null) {
+            DB::table('questions')->where('id', $request->id)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'image_src' => $request->$currentImage
+            ]);
+        } else {
+            DB::table('questions')->where('id', $request->id)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'image_src' => $request->image_src
+            ]);
+        }
         return redirect('/profil');
     }
 

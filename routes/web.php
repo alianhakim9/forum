@@ -32,6 +32,7 @@ Route::post('tambah/save', [QuestionController::class, 'store'])->name('save_que
 
 // Answer Route
 Route::post('answer/add/{question_id}', [AnswerController::class, 'add'])->name('save_answer');
+Route::get('my-answer', [AnswerController::class, 'my_answer']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
