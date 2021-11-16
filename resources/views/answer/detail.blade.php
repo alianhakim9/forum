@@ -22,7 +22,7 @@
                         <div class="text-center">
                             <img src="{{ url('./img/no-answer.png') }}" class="img w-50">
                             <p class="small"><small>kamu belum pernah memberikan jawaban, ayo mulai
-                                    berkolaborasi
+                                    berkontribusi
                                     !</small></p>
                         </div>
                     @endif
