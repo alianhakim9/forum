@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\BugReportController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,9 @@ Route::get('report', function () {
     return view('bug/report');
 });
 Route::post('report/kirim', [BugReportController::class, 'send']);
+
+// About Route
+Route::get(
+    '/about',
+    [AboutController::class, 'about']
+);

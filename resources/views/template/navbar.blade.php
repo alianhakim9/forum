@@ -24,15 +24,12 @@
         <div class="container">
             <!-- Navbar brand -->
             <a class="navbar-brand me-2" href="{{ url('/') }}">
-                <img src="https://cdn0.iconfinder.com/data/icons/news-and-magazine/512/forum-512.png" height="20" alt=""
-                    loading="lazy" />
+                <img src="https://cdn0.iconfinder.com/data/icons/news-and-magazine/512/forum-512.png" height="20" alt="" loading="lazy" />
                 Forum Diskusi
             </a>
 
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -41,7 +38,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item ms-3">
-                        <a href="#" class="cl ps-3 pe-3 pt-2 pb-2 small text-decoration-none text-muted">about</a>
+                        <a href="/about" class="cl ps-3 pe-3 pt-2 pb-2 small text-decoration-none text-muted">about</a>
                     </li>
                     <li class="nav-item">
                         <a href="/report" class="cl ps-3 pe-3 pt-2 pb-2 small text-decoration-none text-muted">laporkan
@@ -51,47 +48,39 @@
                 <!-- Left links -->
 
                 @if (Route::has('login'))
-                    @auth
-                        <ul class="navbar-nav">
-                            <!-- Avatar -->
-                            <li class="nav-item">
-                                <a class="small text-decoration-none ps-3 pe-3 pt-2 pb-2 text-muted  d-flex align-items-center cl"
-                                    href="/profil" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profil"
-                                    role="button" aria-expanded="false">
-                                    <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/boy_person_avatar_kid-1024.png"
-                                        class="rounded-circle" height="22" alt="" loading="lazy" />
-                                    <span class="ms-2">Halo, {{ auth()->user()->name }}</span>
-                                </a>
-                            <li class="nav-item">
-                                <a href="/tambah" class="nav-link small  cl" data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom" title="Tambah pertanyaan"><i class="bi bi-plus-lg"></i>
-                                    <span>pertanyaan</span></a>
-                            </li>
+                @auth
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item">
+                        <a class="small text-decoration-none ps-3 pe-3 pt-2 pb-2 text-muted  d-flex align-items-center cl" href="/profil" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profil" role="button" aria-expanded="false">
+                            <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/boy_person_avatar_kid-1024.png" class="rounded-circle" height="22" alt="" loading="lazy" />
+                            <span class="ms-2">Halo, {{ auth()->user()->name }}</span>
+                        </a>
+                    <li class="nav-item">
+                        <a href="/tambah" class="nav-link small  cl" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah pertanyaan"><i class="bi bi-plus-lg"></i>
+                            <span>pertanyaan</span></a>
+                    </li>
 
-                            </li>
-                            <li class="nav-item">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();"
-                                        class="nav-link small text-decoration-none ps-3 pe-3 pt-2 pb-2 text-muted logout cl"
-                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"><i
-                                            class="bi bi-box-arrow-right"></i><span class="ms-1">keluar</span></a>
-                                </form>
-                            </li>
-                        </ul>
-                    @else
-                        <div class="d-flex align-items-center">
-                            <a class="btn btn-link text-decoration-none px-3 me-2" href="{{ route('login') }}">
-                                Login
-                            </a>
-                            @if (Route::has('register'))
-                                <a type="button" class="btn btn-primary me-3" href="{{ route('register') }}">
-                                    Sign up for free
-                                </a>
-                            @endif
-                        </div>
-                    @endauth
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link small text-decoration-none ps-3 pe-3 pt-2 pb-2 text-muted logout cl" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"><i class="bi bi-box-arrow-right"></i><span class="ms-1">keluar</span></a>
+                        </form>
+                    </li>
+                </ul>
+                @else
+                <div class="d-flex align-items-center">
+                    <a class="btn btn-link text-decoration-none px-3 me-2" href="{{ route('login') }}">
+                        Login
+                    </a>
+                    @if (Route::has('register'))
+                    <a type="button" class="btn btn-primary me-3" href="{{ route('register') }}">
+                        Sign up for free
+                    </a>
+                    @endif
+                </div>
+                @endauth
                 @endif
             </div>
             <!-- Collapsible wrapper -->
@@ -147,8 +136,7 @@
                         <div class="col-md-5 col-12">
                             <!-- Email input -->
                             <div class="form-outline form-white mb-4">
-                                <input type="email" id="form5Example21" class="form-control"
-                                    placeholder="Email address" />
+                                <input type="email" id="form5Example21" class="form-control" placeholder="Email address" />
                             </div>
                         </div>
                         <!--Grid column-->
