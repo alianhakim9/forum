@@ -31,29 +31,27 @@
                             @endif
                         </div>
                     @endforeach
+                @endif
+                @if (Route::has('login'))
+                    @auth
+                        {{-- lamun udah login ieu nu tampil --}}
+                        <h5>Tambah Komentar</h5>
+                        <form enctype="multipart/form-data" method="POST" action="{{ url('answer/add/' . $question->id) }}">
+                            @csrf
+                            <div class="form-group">
+                                <textarea name="answer" id="ckview"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary mt-3">Kirim Komentar</button>
+                            </div>
+                        </form>
+                    @else
+                        {{-- lamun can login, ieu nu tampil --}}
+                        <div class="badge bg-warning text-dark">Silahkan login untuk menambahkan komentar</div>
+                    @endauth
+                @endif
             </div>
-            @endif
-            @if (Route::has('login'))
-                @auth
-                    {{-- lamun udah login ieu nu tampil --}}
-                    <h5>Tambah Komentar</h5>
-                    <form enctype="multipart/form-data" method="POST" action="{{ url('answer/add/' . $question->id) }}">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="answer" id="ckview"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary mt-3">Kirim Komentar</button>
-                        </div>
-                    </form>
-            </div>
-
-        @else
-            {{-- lamun can login, ieu nu tampil --}}
-            <div class="badge bg-warning text-dark">Silahkan login untuk menambahkan komentar</div>
-        @endauth
-        @endif
-    </div>
+        </div>
     </div>
     </div>
     <script src="{{ url('plugins/tinymce/jquery.tinymce.min.js') }}"></script>
