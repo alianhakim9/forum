@@ -280,13 +280,3 @@
 </body>
 
 </html>
-
-{{-- catatan 
-    composer install
-composer update
-npm install && npm run dev
-setup .env
-setup database 
- - nama db : forum-laravel
-php artisan migrate
-php artisan serve --}}

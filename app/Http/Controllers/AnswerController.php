@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
 {
+    public function __construct()
+    {
+    }
+
     function add(Request $request, $question_id)
     {
         $user_id = auth()->user()->id;
@@ -34,5 +40,30 @@ class AnswerController extends Controller
                 'myAnswers' => $myAnswer
             ]);
         }
+    }
+
+    public function get_answer_for_update(Request $request, $answer_id)
+    {
+        $answer = Answer::where('id', $answer_id)->get()->first();
+        return view('answer/edit', [
+            'data' => $answer
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $question_id = Answer::where('id', $id)->get();
+        DB::table('answers')->where('id', $id)->update([
+            'answer' => $request->answer,
+        ]);
+        return redirect('detail/' . $question_id[0]['question_id']);
+    }
+
+    public function delete($id)
+    {
+        $question_id = Answer::where('id', $id)->get();
+
+        Answer::where('id', $id)->delete();
+        return redirect('detail/' . $question_id[0]['question_id']);
     }
 }
