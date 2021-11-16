@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
+            <h1 class="text-center">Welcome back to <br><a href="/" class="text-primary">Forum Diskusi</a></h1>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -47,8 +48,8 @@
                 </x-jet-button>
             </div>
             <div class="text-center items-center mt-4">
-                <p class="mr-4">Belum punya akun ?</p>
-                <a href="{{ route('register') }}" class="m-5 btn bg-transparent">Register</a>
+                <p class="mr-4 small"><small>Belum punya akun ?</small></p>
+                <a href="{{ route('register') }}" class="small"><small>Register</small></a>
             </div>
         </form>
     </x-jet-authentication-card>

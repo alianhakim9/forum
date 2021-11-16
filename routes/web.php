@@ -30,6 +30,7 @@ Route::get('/detail/{question_id}', [QuestionController::class, 'detail']);
 Route::get('/profil', [QuestionController::class, 'view_by_user_id']);
 Route::get('image/view/{fileImage}', [QuestionController::class, 'view_image'])->name('image_view');
 Route::post('tambah/save', [QuestionController::class, 'store'])->name('save_question');
+Route::get('/my-question', [QuestionController::class, 'my_question']);
 
 // Answer Route
 Route::post('answer/add/{question_id}', [AnswerController::class, 'add'])->name('save_answer');

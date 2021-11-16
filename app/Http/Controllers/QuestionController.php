@@ -88,19 +88,16 @@ class QuestionController extends Controller
     public function update(Request $request)
     {
         $currentImage = DB::table('questions')->where('id', $request->id)->get('image_src');
-        var_dump($currentImage);
-        die;
-        if ($request->image_src == null) {
+        if ($request->image_src != null) {
             DB::table('questions')->where('id', $request->id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
-                'image_src' => $request->$currentImage
+                // 'image_src' => $request->$currentImage
             ]);
         } else {
             DB::table('questions')->where('id', $request->id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
-                'image_src' => $request->image_src
             ]);
         }
         return redirect('/profil');
@@ -111,5 +108,21 @@ class QuestionController extends Controller
     {
         DB::table('questions')->where('id', $id)->delete();
         return redirect('/profil');
+    }
+
+    public function my_question()
+    {
+        if (auth()->user() == NULL) {
+            return view('question/user-question', [
+                'status' => false,
+                'message' => 'Harap login terlebih dahulu'
+            ]);
+        } else {
+            $myQuestion = Question::where('user_id', auth()->user()->id)->get();
+            return view('question/user-question', [
+                'status' => true,
+                'myQuestion' => $myQuestion
+            ]);
+        }
     }
 }

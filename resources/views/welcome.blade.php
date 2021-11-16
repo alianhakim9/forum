@@ -12,7 +12,7 @@
                 <p class="text-muted fw-bold">MENU</p>
                 <a href="/" class="nav-link actived ps-2 text-light bg-dark"><i class="bi bi-house"></i> Home</a>
                 <a href="#" class="nav-link text-muted ps-1"><i class="bi bi-compass"></i> Explore Topics</a>
-                <a href="#" class="nav-link text-muted ps-1"><i class="bi bi-book"></i> My Topics</a>
+                <a href="my-question" class="nav-link text-muted ps-1"><i class="bi bi-book"></i> My Topics</a>
                 <a href="/my-answer" class="nav-link text-muted ps-1"><i class="bi bi-chat-left-text"></i> My Answer</a>
             </div>
             <div class="col-md-6">

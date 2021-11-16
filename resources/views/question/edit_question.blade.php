@@ -25,10 +25,10 @@
                                     rows="10">{{ $item->description }}</textarea>
                                 {{-- <textarea name="description" id="ckview"></textarea> --}}
                             </div>
-                            <div class="form-group mb-3">
+                            {{-- <div class="form-group mb-3">
                                 <label>Upload</label>
                                 <input type="file" name="image_src" class="form-control" value="{{ $item->image_src }}">
-                            </div>
+                            </div> --}}
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Edit Pertanyaan</button>
                             </div>

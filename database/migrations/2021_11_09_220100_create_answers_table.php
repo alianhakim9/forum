@@ -22,7 +22,7 @@ class CreateAnswersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');;
             $table->text('answer');
-            $table->string('image_src')->default(null);
+            $table->string('image_src')->nullable();
             $table->timestamps();
         });
     }
